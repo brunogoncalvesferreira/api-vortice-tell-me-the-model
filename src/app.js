@@ -10,9 +10,11 @@ import { jwtConfig } from './auth/auth.js'
 
 export const app = fastify()
 
-app.register(fastifyCors, {
-  origin: '*',
+await app.register(fastifyCors, {
+  origin: true,
+  credentials: true,
 })
+
 app.register(cookie)
 
 app.register(fastifyJwt, {

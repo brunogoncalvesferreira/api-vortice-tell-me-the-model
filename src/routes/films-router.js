@@ -23,11 +23,8 @@ export async function filmsRouter(app) {
 
   app.get('/:id', async (request) => {
     try {
-      const filmsBodySchema = z.object({
-        id: z.string(),
-      })
 
-      const { id } = filmsBodySchema.parse(request.params)
+      const { id } = request.params
 
       const result = await prisma.films.findUnique({
         where: {
