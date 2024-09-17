@@ -1,0 +1,24 @@
+{
+  "name": "api-tell-me-the-model",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch ./src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cookie": "^10.0.0",
+    "@fastify/cors": "^10.0.0",
+    "@fastify/jwt": "^9.0.0",
+    "@prisma/client": "^5.19.1",
+    "bcrypt": "^5.1.1",
+    "fastify": "^5.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.19.1"
+  }
+}
