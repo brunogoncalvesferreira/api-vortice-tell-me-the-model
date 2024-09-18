@@ -24,7 +24,7 @@ export async function compatibleFilmsRouter(app) {
   app.get('/', async () => {
     const compatibleFilms = await prisma.compatibleFilms.findMany({
       orderBy: {
-        created_at: 'desc',
+        created_at: 'asc',
       },
     })
 
