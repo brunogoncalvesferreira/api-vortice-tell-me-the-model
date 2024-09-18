@@ -30,4 +30,18 @@ export async function compatibleFilmsRouter(app) {
 
     return compatibleFilms
   })
+
+  app.delete('/:id', async (request, reply) => {
+    try {
+      const { id } = request.params
+
+      await prisma.compatibleFilms.delete({
+        where: { id },
+      })
+
+      return reply.status(204).send('Deletado com sucesso!')
+    } catch (error) {
+      
+    }
+  })
 }
