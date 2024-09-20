@@ -76,4 +76,22 @@ export async function filmsRouter(app) {
       }
     }
   })
+
+  app.delete('/:id', async (request, reply) => {
+    try {
+      const { id } = request.params 
+
+      await prisma.films.delete({
+        where: {
+          id,
+        },
+      })
+
+      return reply.status(204).send()
+    } catch (error) {
+      if (error) {
+        return reply.status(400).send(error.issues)
+      }
+    }
+  })
 }
