@@ -52,7 +52,7 @@ export async function filmsRouter(app) {
         take: 10,
         skip: pageIndex * 10,
         orderBy: {
-          created_at: 'desc',
+          model: 'asc'
         },
         include: {
           compatibleFilms: true,
@@ -65,6 +65,7 @@ export async function filmsRouter(app) {
             contains: query,
           },
         },
+
       })
 
       const totalPages = Math.ceil(total / 10)
