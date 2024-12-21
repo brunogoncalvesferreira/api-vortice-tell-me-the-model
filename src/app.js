@@ -11,7 +11,7 @@ import { jwtConfig } from './auth/auth.js'
 export const app = fastify()
 
 await app.register(fastifyCors, {
-  origin: true,
+  origin: ['https://api-vortice-tell-me-the-model-508231204334.us-west1.run.app', 'http://localhost:5173'],
   credentials: true,
 })
 
