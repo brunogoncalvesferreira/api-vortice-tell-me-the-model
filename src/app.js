@@ -11,7 +11,7 @@ import { jwtConfig } from './auth/auth.js'
 export const app = fastify()
 
 await app.register(fastifyCors, {
-  origin: '*',
+  origin: 'http://localhost:8080',
   credentials: true,
 })
 
