@@ -7,11 +7,12 @@ import fastifyJwt from '@fastify/jwt'
 import cookie from '@fastify/cookie'
 import { fastifyCors } from '@fastify/cors'
 import { jwtConfig } from './auth/auth.js'
+import { paymentRoutes } from './routes/payment.js'
 
 export const app = fastify()
 
 await app.register(fastifyCors, {
-  origin: 'https://digaomodelo.vercel.app',
+  origin: ['http://localhost:8080', 'https://digaomodelo.vercel.app'],
   credentials: true,
 })
 
@@ -24,4 +25,5 @@ app.register(fastifyJwt, {
 app.register(userRouter, { prefix: 'user' })
 app.register(filmsRouter, { prefix: 'films' })
 app.register(compatibleFilmsRouter, { prefix: 'compatible-films' })
+app.register(paymentRoutes, { prefix: 'payment' })
 app.register(sessionsRoutes, { prefix: 'sessions' })
