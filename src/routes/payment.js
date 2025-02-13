@@ -14,20 +14,32 @@ export async function paymentRoutes(app) {
 
             const {
                 transaction_amount,
+                token,
                 description,
+                installments,
                 payment_method_id,
-                payer,
+                issuerId,
+                email,
+                identificationType,
+                number
             } = request.body
 
 
             const body = {
                 transaction_amount,
+                token,
                 description,
+                installments,
                 payment_method_id,
+                issuer_id: issuerId,
                 payer: {
-                    email: payer.email,
-                },
-            };
+                    email,
+                    identification: {
+                        type: identificationType,
+                        number
+                    }
+                }
+            }
 
             const requestOptions = {
                 idempotencyKey: client.options.idempotencyKey,
@@ -39,7 +51,9 @@ export async function paymentRoutes(app) {
                 .then(result => console.log(result))
                 .catch(error => console.log(error));
 
-            return reply.status(201).send()
+            return reply.status(201).send({
+                message: 'Pagamento realizado com sucesso!'
+            })
         } catch (error) {
             return reply.status(400).send(error.issues)
         }
