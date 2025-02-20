@@ -1,4 +1,4 @@
-import 'dotenv/config'
+/* import 'dotenv/config'
 
 import { MercadoPagoConfig, Payment } from 'mercadopago';
 
@@ -42,7 +42,7 @@ export async function paymentRoutes(app) {
             }
 
             const requestOptions = {
-                idempotencyKey: client.options.idempotencyKey,
+                idempotencyKey: client.options.idempotencyKey
             };
 
             payment.create({
@@ -51,13 +51,11 @@ export async function paymentRoutes(app) {
                 .then(result => console.log(result))
                 .catch(error => console.log(error));
 
-            return reply.status(201).send({
-                message: 'Pagamento realizado com sucesso!'
-            })
+            return reply.status(201).send()
         } catch (error) {
             return reply.status(400).send(error.issues)
         }
     })
 
 
-}
+} */

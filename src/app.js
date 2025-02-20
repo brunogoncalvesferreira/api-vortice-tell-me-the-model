@@ -7,7 +7,7 @@ import fastifyJwt from '@fastify/jwt'
 import cookie from '@fastify/cookie'
 import { fastifyCors } from '@fastify/cors'
 import { jwtConfig } from './auth/auth.js'
-import { paymentRoutes } from './routes/payment.js'
+/* import { paymentRoutes } from './routes/payment.js' */
 
 export const app = fastify()
 
@@ -25,5 +25,5 @@ app.register(fastifyJwt, {
 app.register(userRouter, { prefix: 'user' })
 app.register(filmsRouter, { prefix: 'films' })
 app.register(compatibleFilmsRouter, { prefix: 'compatible-films' })
-app.register(paymentRoutes, { prefix: 'payment' })
+/* app.register(paymentRoutes, { prefix: 'payment' }) */
 app.register(sessionsRoutes, { prefix: 'sessions' })
