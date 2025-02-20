@@ -12,7 +12,7 @@ import { paymentRoutes } from './routes/payment.js'
 export const app = fastify()
 
 await app.register(fastifyCors, {
-  origin: ['https://tm3d.com.br', 'https://www.tm3d.com.br', 'http://localhost:5173',],
+  origin: ['https://tm3d.com.br', 'http://localhost:5173',],
   credentials: true,
 })
 
