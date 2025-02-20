@@ -12,7 +12,7 @@ import { paymentRoutes } from './routes/payment.js'
 export const app = fastify()
 
 await app.register(fastifyCors, {
-  origin: ['https://digaomodelo.vercel.app', 'http://localhost:8080', 'https://www.tm3d.com.br'],
+  origin: ['https://www.tm3d.com.br', 'http://localhost:8080',],
   credentials: true,
 })
 
