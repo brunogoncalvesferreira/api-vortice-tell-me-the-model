@@ -1,61 +1,60 @@
-import { MercadoPagoConfig, Payment } from 'mercadopago';
+import { MercadoPagoConfig, Payment } from "mercadopago"
 
 const client = new MercadoPagoConfig({
-    accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN,
-    options: { timeout: 5000, idempotencyKey: 'abc' }
-});
-
-console.log(process.env.MERCADO_PAGO_ACCESS_TOKEN)
+  accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN,
+  options: { timeout: 5000, idempotencyKey: "abc" },
+})
 
 export async function paymentRoutes(app) {
-    app.post('/', async (request, reply) => {
-        try {
-            const payment = new Payment(client);
+  app.post("/", async (request, reply) => {
+    try {
+      const payment = new Payment(client)
 
-            const {
-                transaction_amount,
-                token,
-                description,
-                installments,
-                payment_method_id,
-                issuerId,
-                email,
-                identificationType,
-                number
-            } = request.body
+      const {
+        transaction_amount,
+        token,
+        description,
+        installments,
+        payment_method_id,
+        issuer_id,
+        email,
+        identificationType,
+        identificationNumber,
+      } = request.body
 
+      const body = {
+        transaction_amount,
+        token,
+        description,
+        installments,
+        payment_method_id,
+        issuer_id,
+        payer: {
+          email,
+          identification: {
+            type: identificationType,
+            number: identificationNumber,
+          },
+        },
+      }
 
-            const body = {
-                transaction_amount,
-                token,
-                description,
-                installments,
-                payment_method_id,
-                issuer_id: issuerId,
-                payer: {
-                    email,
-                    identification: {
-                        type: identificationType,
-                        number
-                    }
-                }
-            }
+      console.log(body)
 
-            const requestOptions = {
-                idempotencyKey: client.options.idempotencyKey
-            };
+      const requestOptions = {
+        idempotencyKey: client.options.idempotencyKey,
+      }
 
-            payment.create({
-                body, requestOptions
-            })
-                .then(result => console.log(result))
-                .catch(error => console.log(error));
+      payment
+        .create({
+          body,
+          requestOptions,
+        })
+        .then((result) => console.log(result))
+        .catch((error) => console.log(error))
 
-            return reply.status(201).send()
-        } catch (error) {
-            return reply.status(400).send(error.issues)
-        }
-    })
-
-
+      return reply.status(201).send()
+    } catch (error) {
+      return reply.status(400).send(error.issues)
+    }
+  })
 }
