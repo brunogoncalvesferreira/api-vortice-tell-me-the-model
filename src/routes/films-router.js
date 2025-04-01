@@ -41,13 +41,13 @@ export async function filmsRouter(app) {
 
   app.get('/search', async (request, reply) => {
     try {
-      const { query, pageIndex, itemIndex } = request.query
+      const { query, pageIndex } = request.query
 
-      if (itemIndex !== undefined && itemIndex >= 5) {
+      /* if (itemIndex !== undefined && itemIndex >= 5) {
         return reply.status(402).send({
           message: "Compre para ter acesso"
         })
-      }
+      } */
 
       const result = await prisma.films.findMany({
         where: {
@@ -55,8 +55,8 @@ export async function filmsRouter(app) {
             contains: query,
           },
         },
-        take: 10,
-        skip: pageIndex * 10,
+        take: 6,
+        skip: pageIndex * 6,
         orderBy: {
           model: 'asc'
         },
