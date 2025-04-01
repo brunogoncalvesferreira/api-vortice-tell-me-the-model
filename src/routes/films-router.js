@@ -54,11 +54,13 @@ export async function filmsRouter(app) {
           model: {
             contains: query,
           },
+
         },
-        take: 6,
-        skip: pageIndex * 6,
+        take: 5,
+        skip: pageIndex * 5,
         orderBy: {
-          model: 'asc'
+          model: 'asc',
+
         },
         include: {
           compatibleFilms: true,
